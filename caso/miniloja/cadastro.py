@@ -1,6 +1,9 @@
 """Cadastro de clientes."""
 
+import re
+
 _CLIENTES = []
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 
 def _cpf_valido(cpf):
@@ -16,12 +19,22 @@ def _cpf_valido(cpf):
 
 def cadastrar_cliente(payload):
     """Cadastra um cliente."""
-    if not payload.get("nome"):
-        return 400, {"erro": "payload inválido"}
-    if not payload.get("email"):
-        return 400, {"erro": "payload inválido"}
-    if "cpf" in payload and not _cpf_valido(payload["cpf"]):
-        return 422, {"erros": [{"campo": "cpf", "erro": "cpf inválido"}]}
+    erros = []
+    nome = payload.get("nome")
+    if not isinstance(nome, str) or not nome.strip():
+        erros.append({"campo": "nome", "erro": "nome obrigatório"})
+    email = payload.get("email")
+    if not isinstance(email, str) or not email.strip():
+        erros.append({"campo": "email", "erro": "email obrigatório"})
+    elif not _EMAIL_RE.match(email):
+        erros.append({"campo": "email", "erro": "email inválido"})
+    cpf = payload.get("cpf")
+    if cpf is None or (isinstance(cpf, str) and not cpf.strip()):
+        erros.append({"campo": "cpf", "erro": "cpf obrigatório"})
+    elif not _cpf_valido(cpf):
+        erros.append({"campo": "cpf", "erro": "cpf inválido"})
+    if erros:
+        return 422, {"erros": erros}
     cliente = dict(payload, id=len(_CLIENTES) + 1)
     _CLIENTES.append(cliente)
     return 201, cliente
