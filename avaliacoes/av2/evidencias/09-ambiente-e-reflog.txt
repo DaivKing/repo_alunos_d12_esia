@@ -1,0 +1,22 @@
+$ python --version
+Python 3.15.0
+
+$ git show --stat --format="%h %s" 7d6555b   # commit do passo 2 que só continha evidência
+7d6555b AV2 refatoração 2: remove comentário obsoleto e código morto (desconto_aplicado)
+
+ avaliacoes/av2/evidencias/05-refatoracao-passos.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+$ git reflog   # reset --soft HEAD~1 desfaz 7d6555b
+c6f09d3 HEAD@{0}: commit: AV2: ADR 0001 (limite do frete e arredondamento)
+1d53ce5 HEAD@{1}: commit: AV2: terceiro expectedFailure (carrinho vazio em PE, R1.5) e suíte final
+aaf1469 HEAD@{2}: commit: AV2: evidências do golden pós-refatoração, sabotagens e verificação final
+6f17e25 HEAD@{3}: commit: AV2 refatoração 4: simplifica a cadeia de cupom e o frete
+8f30555 HEAD@{4}: commit: AV2 refatoração 3: frete e taxa pelas tabelas FRETE_POR_UF/TAXA_POR_UF
+64d5f4c HEAD@{5}: commit: AV2 refatoração 2: remove comentário obsoleto e código morto (desconto_aplicado)
+6cd10b6 HEAD@{6}: reset: moving to HEAD~1
+7d6555b HEAD@{7}: commit: AV2 refatoração 2: remove comentário obsoleto e código morto (desconto_aplicado)
+6cd10b6 HEAD@{8}: commit: AV2 refatoração 1: docstring com o contrato
+8d180af HEAD@{9}: commit: AV2: evidências da mutação com testes novos (com e sem golden)
+ca734b9 HEAD@{10}: commit: AV2: testes de golden e de contrato (R1) do calcular_total
+7de7058 HEAD@{11}: commit: AV2: golden master do calcular_total original
