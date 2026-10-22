@@ -1,0 +1,56 @@
+$ python -B testes/test_miniloja.py --codigo caso --existentes
+test_cadastro_sem_nome_e_rejeitado (testes_existentes.test_cadastro.TestCadastro.test_cadastro_sem_nome_e_rejeitado) ... ok
+test_cadastro_valido (testes_existentes.test_cadastro.TestCadastro.test_cadastro_valido) ... ok
+test_cenarios_gravados (testes_existentes.test_calculo.TestCalculo.test_cenarios_gravados) ... ok
+test_cupom_desconhecido_e_ignorado (testes_existentes.test_calculo.TestCalculo.test_cupom_desconhecido_e_ignorado) ... ok
+test_cupom_natal_com_flag (testes_existentes.test_calculo.TestCalculo.test_cupom_natal_com_flag) ... ok
+test_cupom_promo10_sp (testes_existentes.test_calculo.TestCalculo.test_cupom_promo10_sp) ... ok
+test_frete_gratis_rj (testes_existentes.test_calculo.TestCalculo.test_frete_gratis_rj) ... ok
+test_pedido_acima_de_200_nao_paga_frete (testes_existentes.test_calculo.TestCalculo.test_pedido_acima_de_200_nao_paga_frete) ... ok
+test_retorna_numero (testes_existentes.test_calculo.TestCalculo.test_retorna_numero) ... ok
+test_total_simples_pe (testes_existentes.test_calculo.TestCalculo.test_total_simples_pe) ... ok
+test_uf_desconhecida_usa_frete_e_taxa_padrao (testes_existentes.test_calculo.TestCalculo.test_uf_desconhecida_usa_frete_e_taxa_padrao) ... ok
+test_r1_1_carrinho_vazio_paga_so_frete_e_taxa (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_1_carrinho_vazio_paga_so_frete_e_taxa) ... ok
+test_r1_1_subtotal_soma_preco_vezes_quantidade (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_1_subtotal_soma_preco_vezes_quantidade) ... ok
+test_r1_2_cupom_desconhecido_e_ignorado (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_cupom_desconhecido_e_ignorado) ... ok
+test_r1_2_fretegratis_zera_o_frete_sem_alterar_o_valor (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_fretegratis_zera_o_frete_sem_alterar_o_valor) ... ok
+test_r1_2_natal_com_campanha_ativa_desconta_20_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_com_campanha_ativa_desconta_20_por_cento) ... ok
+test_r1_2_natal_le_a_campanha_a_cada_chamada (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_le_a_campanha_a_cada_chamada) ... ok
+test_r1_2_natal_sem_campanha_nao_desconta (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_sem_campanha_nao_desconta) ... ok
+test_r1_2_promo10_desconta_10_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_promo10_desconta_10_por_cento) ... ok
+test_r1_2_vip15_desconta_15_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_vip15_desconta_15_por_cento) ... ok
+test_r1_3_4_demais_ufs_frete_29_90_taxa_8_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_demais_ufs_frete_29_90_taxa_8_por_cento) ... ok
+test_r1_3_4_pe_frete_12_90_taxa_5_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_pe_frete_12_90_taxa_5_por_cento) ... ok
+test_r1_3_4_rj_frete_21_50_taxa_6_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_rj_frete_21_50_taxa_6_por_cento) ... ok
+test_r1_3_4_sp_frete_19_90_taxa_7_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_sp_frete_19_90_taxa_7_por_cento) ... ok
+test_r1_3_acima_do_limite_nao_paga_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_acima_do_limite_nao_paga_frete) ... ok
+test_r1_3_subtotal_exatamente_200_tem_frete_gratis (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_subtotal_exatamente_200_tem_frete_gratis) ... expected failure
+test_r1_5_arredondamento_meio_para_cima (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_5_arredondamento_meio_para_cima) ... expected failure
+test_r1_5_carrinho_vazio_em_pe_meio_para_cima (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_5_carrinho_vazio_em_pe_meio_para_cima) ... expected failure
+test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete) ... ok
+test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete) ... ok
+test_aplicar_desconto (testes_existentes.test_descontos.TestDescontos.test_aplicar_desconto) ... ok
+test_sem_cupom_retorna_total (testes_existentes.test_descontos.TestDescontos.test_sem_cupom_retorna_total) ... ok
+test_reservar_alem_do_saldo_levanta (testes_existentes.test_estoque.TestEstoque.test_reservar_alem_do_saldo_levanta) ... ok
+test_reservar_decrementa_saldo (testes_existentes.test_estoque.TestEstoque.test_reservar_decrementa_saldo) ... ok
+test_formatar_moeda_milhar (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_milhar) ... ok
+test_formatar_moeda_nao_quebra (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_nao_quebra) ... ok
+test_todas_as_entradas_do_golden_sao_identicas (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_todas_as_entradas_do_golden_sao_identicas) ... ok
+test_criar_e_obter_pedido (testes_existentes.test_handlers.TestHandlers.test_criar_e_obter_pedido) ... ok
+test_estoque_insuficiente_retorna_409 (testes_existentes.test_handlers.TestHandlers.test_estoque_insuficiente_retorna_409) ... ok
+test_pedido_inexistente (testes_existentes.test_handlers.TestHandlers.test_pedido_inexistente) ... ok
+test_criar_pedido (testes_existentes.test_pedidos.TestPedidos.test_criar_pedido) ... ok
+test_fluxo_chama_colaboradores (testes_existentes.test_pedidos.TestPedidos.test_fluxo_chama_colaboradores) ... ok
+test_pagamento_recusado_nao_salva_pedido (testes_existentes.test_pedidos.TestPedidos.test_pagamento_recusado_nao_salva_pedido) ... ok
+test_pedido_sem_itens_e_rejeitado (testes_existentes.test_pedidos.TestPedidos.test_pedido_sem_itens_e_rejeitado) ... ok
+test_resumo_vendas (testes_existentes.test_relatorios.TestRelatorios.test_resumo_vendas) ... ok
+test_simular_desconto (testes_existentes.test_relatorios.TestRelatorios.test_simular_desconto) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.037s
+
+OK (expected failures=3)
+exit=0
+$ python -B caso/golden_master.py --comparar
+entradas: 2592 | iguais: 2592 | diferentes: 0
+exit=0

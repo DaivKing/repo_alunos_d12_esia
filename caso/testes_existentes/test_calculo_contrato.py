@@ -3,7 +3,7 @@
 O valor esperado de cada teste está calculado à mão no comentário, com arredondamento
 a duas casas, meio para cima. Escolhi entradas que não caem num meio exato (x,xx5), para o
 resultado não depender do erro binário do float; os dois casos em que isso importa estão
-nos testes expectedFailure no fim do arquivo.
+nos testes expectedFailure no fim do arquivo (R1.3 e R1.5).
 """
 import os
 import unittest
@@ -122,6 +122,13 @@ class TestContratoR1(unittest.TestCase):
         # O código usa round() sobre float; o contrato pede meio para cima.
         # (0,20 + 12,90) * 1,05 = 13,755 -> 13,76
         self.assertEqual(calcular_total([{"preco": 0.20, "qtd": 1}], None, "PE"), 13.76)
+
+    @unittest.expectedFailure
+    def test_r1_5_carrinho_vazio_em_pe_meio_para_cima(self):
+        # Divergência R1.5 — reportada, não corrigida; ver ADR 0001.
+        # O código usa round() sobre float; o contrato pede meio para cima.
+        # (0 + 12,90) * 1,05 = 13,545 -> 13,55 (o código devolve 13,54)
+        self.assertEqual(calcular_total([], None, "PE"), 13.55)
 
 
 if __name__ == "__main__":
