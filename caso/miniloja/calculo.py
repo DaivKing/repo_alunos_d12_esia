@@ -37,28 +37,19 @@ def calcular_total(itens, cupom=None, uf="PE"):
         total = total + preco * qtd
 
     # desconto
-    if cupom is not None:
-        if cupom == "PROMO10":
-            total = total * 0.9
-        elif cupom == "VIP15":
-            total = total * 0.85
-        elif cupom == "FRETEGRATIS":
-            pass  # só zera o frete, tratado mais abaixo
-        elif cupom == "NATAL":
-            # só vale com a campanha ativa
-            if flags.promo_natal_ativa():
-                total = total * 0.8
-        # cupom desconhecido (qualquer outro valor) é ignorado
+    if cupom == "PROMO10":
+        total = total * 0.9
+    elif cupom == "VIP15":
+        total = total * 0.85
+    elif cupom == "NATAL" and flags.promo_natal_ativa():
+        total = total * 0.8
+    # FRETEGRATIS não altera o valor e cupom desconhecido é ignorado
 
     # frete
-    frete = 0
-    if cupom == "FRETEGRATIS":
+    if cupom == "FRETEGRATIS" or total > 200:
         frete = 0
     else:
-        if total > 200:
-            frete = 0
-        else:
-            frete = FRETE_POR_UF.get(uf, FRETE_PADRAO)
+        frete = FRETE_POR_UF.get(uf, FRETE_PADRAO)
     total = total + frete
 
     # taxa de serviço por UF
