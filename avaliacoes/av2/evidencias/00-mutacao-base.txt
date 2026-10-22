@@ -1,0 +1,12 @@
+$ MINILOJA_TEST_CMD="python -B testes/test_miniloja.py --existentes --codigo caso -x" python -B testes/mutacao_manual.py
+# nota: sem a variável, o padrão (shlex.split(sys.executable)) quebra no Windows com FileNotFoundError; comando equivalente ao padrão
+Mutantes: 31 | mortos: 23 | sobreviventes: 8 | escore: 74%
+  SOBREVIVEU  calculo.py: NATAL: 20% -> 21%
+  SOBREVIVEU  calculo.py: frete RJ
+  SOBREVIVEU  calculo.py: variável sem efeito (mutante equivalente)
+  SOBREVIVEU  descontos.py: percentual do VIP15
+  SOBREVIVEU  estoque.py: limite exato do estoque
+  SOBREVIVEU  cadastro.py: e-mail deixa de ser obrigatório
+  SOBREVIVEU  pedidos.py: total formatado sempre zero
+  SOBREVIVEU  relatorios.py: formatação do relatório
+exit=0

@@ -1,0 +1,5 @@
+$ python -B caso/golden_master.py --gerar   # código original
+golden gerado: 2592 entradas em golden_calculo.json
+$ python -B caso/golden_master.py --comparar
+entradas: 2592 | iguais: 2592 | diferentes: 0
+exit=0
