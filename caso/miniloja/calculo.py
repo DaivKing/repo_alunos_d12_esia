@@ -33,30 +33,20 @@ def calcular_total(itens, cupom=None, uf="PE"):
         preco = i["preco"]
         qtd = i["qtd"]
         total = total + preco * qtd
-    # total = round(total, 2)  # tentamos arredondar aqui em 2023, desfeito
 
     # desconto
-    desconto_aplicado = False
     if cupom is not None:
         if cupom == "PROMO10":
             total = total * 0.9
-            desconto_aplicado = True
         elif cupom == "VIP15":
             total = total * 0.85
-            desconto_aplicado = True
         elif cupom == "FRETEGRATIS":
-            # tratado mais abaixo
-            desconto_aplicado = False
+            pass  # só zera o frete, tratado mais abaixo
         elif cupom == "NATAL":
-            # campanha antiga; só vale se a flag estiver ligada
+            # só vale com a campanha ativa
             if flags.promo_natal_ativa():
                 total = total * 0.8
-                desconto_aplicado = True
-            else:
-                desconto_aplicado = False
-        else:
-            # cupom desconhecido é ignorado
-            desconto_aplicado = False
+        # cupom desconhecido (qualquer outro valor) é ignorado
 
     # frete
     frete = 0
@@ -87,8 +77,5 @@ def calcular_total(itens, cupom=None, uf="PE"):
         taxa = 0.08
     imposto = total * taxa
     total = total + imposto
-
-    if desconto_aplicado:
-        pass  # reservado para relatório de descontos (não implementado)
 
     return round(total, 2)
