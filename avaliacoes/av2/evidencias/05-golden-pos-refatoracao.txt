@@ -1,0 +1,7 @@
+$ python -B caso/golden_master.py --comparar   # código refatorado
+entradas: 2592 | iguais: 2592 | diferentes: 0
+exit=0
+$ python -B testes/test_miniloja.py --codigo caso --existentes (resumo)
+Ran 45 tests in 0.034s
+
+OK (expected failures=2)

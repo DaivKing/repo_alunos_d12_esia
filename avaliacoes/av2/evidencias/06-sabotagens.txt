@@ -1,0 +1,44 @@
+=== sabotagem: frete RJ  ("RJ": 21.5 -> "RJ": 22.5) ===
+$ python -B testes/test_miniloja.py --codigo caso --existentes
+FAIL: test_r1_1_carrinho_vazio_paga_so_frete_e_taxa (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_1_carrinho_vazio_paga_so_frete_e_taxa)
+FAIL: test_r1_2_cupom_desconhecido_e_ignorado (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_cupom_desconhecido_e_ignorado)
+FAIL: test_r1_2_natal_com_campanha_ativa_desconta_20_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_com_campanha_ativa_desconta_20_por_cento)
+FAIL: test_r1_2_natal_le_a_campanha_a_cada_chamada (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_le_a_campanha_a_cada_chamada)
+FAIL: test_r1_2_natal_sem_campanha_nao_desconta (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_natal_sem_campanha_nao_desconta)
+FAIL: test_r1_3_4_rj_frete_21_50_taxa_6_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_rj_frete_21_50_taxa_6_por_cento)
+FAIL: test_todas_as_entradas_do_golden_sao_identicas (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_todas_as_entradas_do_golden_sao_identicas)
+Ran 45 tests in 0.078s
+FAILED (failures=7, expected failures=2)
+=== sabotagem: taxa SP  ("SP": 0.07 -> "SP": 0.08) ===
+$ python -B testes/test_miniloja.py --codigo caso --existentes
+FAIL: test_cenarios_gravados (testes_existentes.test_calculo.TestCalculo.test_cenarios_gravados)
+FAIL: test_cupom_promo10_sp (testes_existentes.test_calculo.TestCalculo.test_cupom_promo10_sp)
+FAIL: test_r1_1_subtotal_soma_preco_vezes_quantidade (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_1_subtotal_soma_preco_vezes_quantidade)
+FAIL: test_r1_2_fretegratis_zera_o_frete_sem_alterar_o_valor (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_fretegratis_zera_o_frete_sem_alterar_o_valor)
+FAIL: test_r1_2_promo10_desconta_10_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_promo10_desconta_10_por_cento)
+FAIL: test_r1_2_vip15_desconta_15_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_vip15_desconta_15_por_cento)
+FAIL: test_r1_3_4_sp_frete_19_90_taxa_7_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_4_sp_frete_19_90_taxa_7_por_cento)
+FAIL: test_r1_3_acima_do_limite_nao_paga_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_acima_do_limite_nao_paga_frete)
+FAIL: test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete)
+FAIL: test_todas_as_entradas_do_golden_sao_identicas (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_todas_as_entradas_do_golden_sao_identicas)
+Ran 45 tests in 0.045s
+FAILED (failures=10, expected failures=2)
+=== sabotagem: PROMO10  (total * 0.9 -> total * 0.91) ===
+$ python -B testes/test_miniloja.py --codigo caso --existentes
+FAIL: test_cupom_promo10_sp (testes_existentes.test_calculo.TestCalculo.test_cupom_promo10_sp)
+FAIL: test_r1_2_promo10_desconta_10_por_cento (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_2_promo10_desconta_10_por_cento)
+FAIL: test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete)
+FAIL: test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete)
+FAIL: test_todas_as_entradas_do_golden_sao_identicas (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_todas_as_entradas_do_golden_sao_identicas)
+Ran 45 tests in 0.042s
+FAILED (failures=5, expected failures=2)
+=== sabotagem: limite do frete  (total > 200 -> total > 300) ===
+$ python -B testes/test_miniloja.py --codigo caso --existentes
+FAIL: test_cenarios_gravados (testes_existentes.test_calculo.TestCalculo.test_cenarios_gravados)
+FAIL: test_pedido_acima_de_200_nao_paga_frete (testes_existentes.test_calculo.TestCalculo.test_pedido_acima_de_200_nao_paga_frete)
+FAIL: test_r1_3_acima_do_limite_nao_paga_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_3_acima_do_limite_nao_paga_frete)
+FAIL: test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_derruba_o_subtotal_abaixo_de_200_passa_a_pagar_frete)
+FAIL: test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete (testes_existentes.test_calculo_contrato.TestContratoR1.test_r1_6_desconto_que_mantem_acima_de_200_continua_sem_frete)
+FAIL: test_todas_as_entradas_do_golden_sao_identicas (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_todas_as_entradas_do_golden_sao_identicas)
+Ran 45 tests in 0.046s
+FAILED (failures=6, expected failures=2)

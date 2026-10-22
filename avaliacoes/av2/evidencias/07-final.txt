@@ -1,0 +1,43 @@
+$ python -B testes/test_miniloja.py --codigo caso
+test_v01_total_simples_em_pe (__main__.TestMiniLoja.test_v01_total_simples_em_pe) ... ok
+test_v02_cupom_promo10_aplica_dez_por_cento (__main__.TestMiniLoja.test_v02_cupom_promo10_aplica_dez_por_cento) ... ok
+test_v03_cupom_fretegratis_zera_o_frete (__main__.TestMiniLoja.test_v03_cupom_fretegratis_zera_o_frete) ... ok
+test_v04_pedido_bem_acima_de_200_nao_paga_frete (__main__.TestMiniLoja.test_v04_pedido_bem_acima_de_200_nao_paga_frete) ... ok
+test_v05_pedido_sem_itens_e_rejeitado (__main__.TestMiniLoja.test_v05_pedido_sem_itens_e_rejeitado) ... ok
+test_v06_estoque_insuficiente_responde_409 (__main__.TestMiniLoja.test_v06_estoque_insuficiente_responde_409) ... ok
+test_v07_cadastro_com_cpf_valido_e_aceito (__main__.TestMiniLoja.test_v07_cadastro_com_cpf_valido_e_aceito) ... ok
+test_v08_cpf_com_digito_verificador_errado (__main__.TestMiniLoja.test_v08_cpf_com_digito_verificador_errado) ... FAIL
+test_v09_cpf_com_todos_os_digitos_iguais (__main__.TestMiniLoja.test_v09_cpf_com_todos_os_digitos_iguais) ... FAIL
+test_v10_payload_invalido_lista_todos_os_erros (__main__.TestMiniLoja.test_v10_payload_invalido_lista_todos_os_erros) ... FAIL
+test_v11_cadastro_valido_recebe_identificador (__main__.TestMiniLoja.test_v11_cadastro_valido_recebe_identificador) ... ok
+Ran 11 tests in 0.007s
+FAILED (failures=3)
+exit=1
+
+$ git diff main --stat -- . ":!avaliacoes"   (código)
+ caso/golden_calculo.json                        | 34706 ++++++++++++++++++++++
+ caso/golden_master.py                           |   102 +
+ caso/miniloja/calculo.py                        |    80 +-
+ caso/testes_existentes/test_calculo_contrato.py |   128 +
+ caso/testes_existentes/test_golden_calculo.py   |    33 +
+ 5 files changed, 35002 insertions(+), 47 deletions(-)
+
+$ git status --short -- testes caso/regras.md caso/golden_calculo.json caso/testes_existentes/test_calculo.py caso/miniloja (esperado: vazio)
+$ git diff main --name-status -- testes caso/regras.md caso/miniloja caso/testes_existentes
+M	caso/miniloja/calculo.py
+A	caso/testes_existentes/test_calculo_contrato.py
+A	caso/testes_existentes/test_golden_calculo.py
+
+$ git diff main --stat
+ avaliacoes/av2/evidencias/00-mutacao-base.txt      |    12 +
+ avaliacoes/av2/evidencias/01-golden-original.txt   |     5 +
+ avaliacoes/av2/evidencias/03-suite-com-novos.txt   |    52 +
+ .../av2/evidencias/04a-mutacao-com-golden.txt      |     9 +
+ .../av2/evidencias/04b-mutacao-sem-golden.txt      |     9 +
+ .../av2/evidencias/05-refatoracao-passos.txt       |    32 +
+ caso/golden_calculo.json                           | 34706 +++++++++++++++++++
+ caso/golden_master.py                              |   102 +
+ caso/miniloja/calculo.py                           |    80 +-
+ caso/testes_existentes/test_calculo_contrato.py    |   128 +
+ caso/testes_existentes/test_golden_calculo.py      |    33 +
+ 11 files changed, 35121 insertions(+), 47 deletions(-)
