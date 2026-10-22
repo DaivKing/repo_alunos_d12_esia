@@ -1,0 +1,8 @@
+=== passo 1: docstring com o contrato ===
+$ python -B caso/golden_master.py --comparar
+entradas: 2592 | iguais: 2592 | diferentes: 0
+$ python -B testes/test_miniloja.py --codigo caso --existentes (resumo)
+Ran 45 tests in 0.049s
+
+OK (expected failures=2)
+golden_exit=0 existentes_exit=0
