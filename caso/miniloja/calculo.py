@@ -3,6 +3,8 @@ from miniloja import flags
 
 FRETE_POR_UF = {"PE": 12.9, "SP": 19.9, "RJ": 21.5}
 TAXA_POR_UF = {"PE": 0.05, "SP": 0.07, "RJ": 0.06}
+FRETE_PADRAO = 29.9  # demais UFs
+TAXA_PADRAO = 0.08  # demais UFs
 
 
 def calcular_total(itens, cupom=None, uf="PE"):
@@ -56,25 +58,11 @@ def calcular_total(itens, cupom=None, uf="PE"):
         if total > 200:
             frete = 0
         else:
-            if uf == "PE":
-                frete = 12.9
-            elif uf == "SP":
-                frete = 19.9
-            elif uf == "RJ":
-                frete = 21.5
-            else:
-                frete = 29.9
+            frete = FRETE_POR_UF.get(uf, FRETE_PADRAO)
     total = total + frete
 
     # taxa de serviço por UF
-    if uf == "PE":
-        taxa = 0.05
-    elif uf == "SP":
-        taxa = 0.07
-    elif uf == "RJ":
-        taxa = 0.06
-    else:
-        taxa = 0.08
+    taxa = TAXA_POR_UF.get(uf, TAXA_PADRAO)
     imposto = total * taxa
     total = total + imposto
 
