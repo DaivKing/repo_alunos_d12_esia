@@ -29,7 +29,7 @@
 4. Refatoração: `.get(uf, padrão)` muda o comportamento para `uf` não hashável (`TypeError` em vez da UF padrão); o golden não cobre. Decisão: não corrigir, fora do domínio do contrato; registrado aqui.
 **Limite da verificação e condição para rever:** o golden cobre só a grade gerada (`uf` string, preços da grade); float e `round` dependem da plataforma (rodado em Python 3.15.0, `09-ambiente-e-reflog.txt`; confirmado em 3.10 numa verificação independente, abaixo do 3.11 exigido, informada pelo estudante, sem arquivo de evidência); mutação não rodada pós-refatoração (âncoras sumiram) → 4 sabotagens manuais; `mutacao_manual.py` quebra no Windows por `shlex.split(sys.executable)` (`FileNotFoundError`), contornado com `MINILOJA_TEST_CMD` (`00`); mutantes de outros módulos não tratados. Rever se o dono do contrato decidir corrigir R1.3/R1.5 ou se mudar a plataforma ou a versão do Python.
 
-**Procedência/IA:** ferramenta e modelo visíveis: Claude Code, modelo ___; Claude (chat), modelo ___, usado para planejar o escopo e revisar o plano; tarefa delegada e contexto: ___; trecho aproveitado: ___; minha verificação/intervenção: ___. O raciocínio e a decisão registrados são meus.
+**Procedência/IA:** ferramenta e modelo visíveis: Claude Code, modelo Sonnet 5.5 (`claude-sonnet-5-5`); Claude (chat), modelo ___, usado para planejar o escopo e revisar o plano; tarefa delegada e contexto: com o escopo de seis campos e as invariantes definidos por mim, delegar ao Claude Code a leitura dos arquivos, o plano numerado, a geração do golden e dos testes, a refatoração em 4 passos com golden após cada um, a mutação, as sabotagens, o ADR e o rascunho deste registro; trecho aproveitado: `caso/golden_master.py`, `test_golden_calculo.py`, `test_calculo_contrato.py`, as 4 etapas de `calculo.py`, o ADR 0001 e o rascunho deste registro, após minha revisão; minha verificação/intervenção: revisei e cortei o plano antes de qualquer edição (itens (a), (b) e (c) acima), reordenei a mutação, exigi os `expectedFailure` com o esperado do contrato e o terceiro caso (vazio em PE), apontei os erros 1 e 2 da IA, conferi os esperados dos testes contra o contrato e fiz a verificação independente em Python 3.10. O raciocínio e a decisão registrados são meus.
 
 **Anexo:** resumo do diff — `git diff main --stat -- . ":!caso/golden_calculo.json"` (o JSON tem 34.706 linhas geradas; estado antes do commit deste registro):
 ```
@@ -74,4 +74,4 @@ def test_r1_2_natal_le_a_campanha_a_cada_chamada(self):
     religada = calcular_total(CEM, "NATAL", "RJ")  # 107,59
     self.assertEqual((ligada, desligada, religada), (107.59, 128.79, 107.59))
 ```
-**Revisão:** [ ] escopo; [ ] comportamento; [ ] testes com prova; [ ] documentação; [ ] erros da IA; [ ] limite.
+**Revisão:** [x] escopo; [x] comportamento; [x] testes com prova; [x] documentação; [x] erros da IA; [x] limite.
