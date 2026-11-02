@@ -1,0 +1,54 @@
+== sabotagem: corpo do laco de liberacao trocado por pass ==
+diff --git a/caso/miniloja/pedidos.py b/caso/miniloja/pedidos.py
+index 1d3fc63..d950711 100644
+--- a/caso/miniloja/pedidos.py
++++ b/caso/miniloja/pedidos.py
+@@ -28,7 +28,7 @@ class PedidoService:
+         except EstoqueInsuficiente:
+             # R2.2: nenhuma reserva desta chamada pode permanecer.
+             for sku, qtd in reversed(feitas):
+-                self.estoque.liberar(sku, qtd, pedido_tmp)
++                pass
+             raise
+         cobranca = self.gateway.cobrar(total, token)
+         if cobranca["status"] != "aprovado":
+== focado ==
+test_item_sem_estoque_nao_deixa_reserva (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_item_sem_estoque_nao_deixa_reserva) ... FAIL
+test_pedido_com_estoque_continua_reservando (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_pedido_com_estoque_continua_reservando) ... ok
+test_sku_repetido_falha_no_proprio_sku (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_falha_no_proprio_sku) ... FAIL
+test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato) ... FAIL
+
+======================================================================
+FAIL: test_item_sem_estoque_nao_deixa_reserva (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_item_sem_estoque_nao_deixa_reserva)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\caso\testes_existentes\test_reserva_estoque.py", line 31, in test_item_sem_estoque_nao_deixa_reserva
+    self.assertEqual(self.estoque.saldo("BOLA-01"), 10)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 8 != 10
+
+======================================================================
+FAIL: test_sku_repetido_falha_no_proprio_sku (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_falha_no_proprio_sku)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\caso\testes_existentes\test_reserva_estoque.py", line 57, in test_sku_repetido_falha_no_proprio_sku
+    self.assertEqual(self.estoque.saldo("BOLA-01"), 10)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 10
+
+======================================================================
+FAIL: test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\caso\testes_existentes\test_reserva_estoque.py", line 48, in test_sku_repetido_restaura_saldo_exato
+    self.assertEqual(self.estoque.saldo("BOLA-01"), 10)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 5 != 10
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+FAILED (failures=3)
+LASTEXITCODE=1
+== apos restaurar: git diff --stat (vazio esperado) ==
+(fim do diff --stat)

@@ -1,0 +1,84 @@
+== git rev-parse HEAD ==
+8bec5f7ca462d07dc07900d47be42b020186119f
+== git status --short (vazio = limpo) ==
+?? avaliacoes/av3/evidencias/
+== verificacoes oficiais ==
+test_v01_total_simples_em_pe (__main__.TestMiniLoja.test_v01_total_simples_em_pe) ... ok
+test_v02_cupom_promo10_aplica_dez_por_cento (__main__.TestMiniLoja.test_v02_cupom_promo10_aplica_dez_por_cento) ... ok
+test_v03_cupom_fretegratis_zera_o_frete (__main__.TestMiniLoja.test_v03_cupom_fretegratis_zera_o_frete) ... ok
+test_v04_pedido_bem_acima_de_200_nao_paga_frete (__main__.TestMiniLoja.test_v04_pedido_bem_acima_de_200_nao_paga_frete) ... ok
+test_v05_pedido_sem_itens_e_rejeitado (__main__.TestMiniLoja.test_v05_pedido_sem_itens_e_rejeitado) ... ok
+test_v06_estoque_insuficiente_responde_409 (__main__.TestMiniLoja.test_v06_estoque_insuficiente_responde_409) ... ok
+test_v07_cadastro_com_cpf_valido_e_aceito (__main__.TestMiniLoja.test_v07_cadastro_com_cpf_valido_e_aceito) ... ok
+test_v08_cpf_com_digito_verificador_errado (__main__.TestMiniLoja.test_v08_cpf_com_digito_verificador_errado) ... FAIL
+test_v09_cpf_com_todos_os_digitos_iguais (__main__.TestMiniLoja.test_v09_cpf_com_todos_os_digitos_iguais) ... FAIL
+test_v10_payload_invalido_lista_todos_os_erros (__main__.TestMiniLoja.test_v10_payload_invalido_lista_todos_os_erros) ... FAIL
+test_v11_cadastro_valido_recebe_identificador (__main__.TestMiniLoja.test_v11_cadastro_valido_recebe_identificador) ... ok
+
+======================================================================
+FAIL: test_v08_cpf_com_digito_verificador_errado (__main__.TestMiniLoja.test_v08_cpf_com_digito_verificador_errado)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\testes\test_miniloja.py", line 69, in test_v08_cpf_com_digito_verificador_errado
+    self.assertEqual(status, 422)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 201 != 422
+
+======================================================================
+FAIL: test_v09_cpf_com_todos_os_digitos_iguais (__main__.TestMiniLoja.test_v09_cpf_com_todos_os_digitos_iguais)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\testes\test_miniloja.py", line 76, in test_v09_cpf_com_todos_os_digitos_iguais
+    self.assertEqual(status, 422)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 201 != 422
+
+======================================================================
+FAIL: test_v10_payload_invalido_lista_todos_os_erros (__main__.TestMiniLoja.test_v10_payload_invalido_lista_todos_os_erros)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\testes\test_miniloja.py", line 81, in test_v10_payload_invalido_lista_todos_os_erros
+    self.assertEqual(status, 422)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 400 != 422
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.012s
+
+FAILED (failures=3)
+LASTEXITCODE=1
+== suite existente ==
+test_cadastro_sem_nome_e_rejeitado (testes_existentes.test_cadastro.TestCadastro.test_cadastro_sem_nome_e_rejeitado) ... ok
+test_cadastro_valido (testes_existentes.test_cadastro.TestCadastro.test_cadastro_valido) ... ok
+test_cenarios_gravados (testes_existentes.test_calculo.TestCalculo.test_cenarios_gravados) ... ok
+test_cupom_desconhecido_e_ignorado (testes_existentes.test_calculo.TestCalculo.test_cupom_desconhecido_e_ignorado) ... ok
+test_cupom_natal_com_flag (testes_existentes.test_calculo.TestCalculo.test_cupom_natal_com_flag) ... ok
+test_cupom_promo10_sp (testes_existentes.test_calculo.TestCalculo.test_cupom_promo10_sp) ... ok
+test_frete_gratis_rj (testes_existentes.test_calculo.TestCalculo.test_frete_gratis_rj) ... ok
+test_pedido_acima_de_200_nao_paga_frete (testes_existentes.test_calculo.TestCalculo.test_pedido_acima_de_200_nao_paga_frete) ... ok
+test_retorna_numero (testes_existentes.test_calculo.TestCalculo.test_retorna_numero) ... ok
+test_total_simples_pe (testes_existentes.test_calculo.TestCalculo.test_total_simples_pe) ... ok
+test_uf_desconhecida_usa_frete_e_taxa_padrao (testes_existentes.test_calculo.TestCalculo.test_uf_desconhecida_usa_frete_e_taxa_padrao) ... ok
+test_aplicar_desconto (testes_existentes.test_descontos.TestDescontos.test_aplicar_desconto) ... ok
+test_sem_cupom_retorna_total (testes_existentes.test_descontos.TestDescontos.test_sem_cupom_retorna_total) ... ok
+test_reservar_alem_do_saldo_levanta (testes_existentes.test_estoque.TestEstoque.test_reservar_alem_do_saldo_levanta) ... ok
+test_reservar_decrementa_saldo (testes_existentes.test_estoque.TestEstoque.test_reservar_decrementa_saldo) ... ok
+test_formatar_moeda_milhar (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_milhar) ... ok
+test_formatar_moeda_nao_quebra (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_nao_quebra) ... ok
+test_cenarios_golden (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_cenarios_golden) ... ok
+test_criar_e_obter_pedido (testes_existentes.test_handlers.TestHandlers.test_criar_e_obter_pedido) ... ok
+test_estoque_insuficiente_retorna_409 (testes_existentes.test_handlers.TestHandlers.test_estoque_insuficiente_retorna_409) ... ok
+test_pedido_inexistente (testes_existentes.test_handlers.TestHandlers.test_pedido_inexistente) ... ok
+test_criar_pedido (testes_existentes.test_pedidos.TestPedidos.test_criar_pedido) ... ok
+test_fluxo_chama_colaboradores (testes_existentes.test_pedidos.TestPedidos.test_fluxo_chama_colaboradores) ... ok
+test_pagamento_recusado_nao_salva_pedido (testes_existentes.test_pedidos.TestPedidos.test_pagamento_recusado_nao_salva_pedido) ... ok
+test_pedido_sem_itens_e_rejeitado (testes_existentes.test_pedidos.TestPedidos.test_pedido_sem_itens_e_rejeitado) ... ok
+test_resumo_vendas (testes_existentes.test_relatorios.TestRelatorios.test_resumo_vendas) ... ok
+test_simular_desconto (testes_existentes.test_relatorios.TestRelatorios.test_simular_desconto) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.004s
+
+OK
+LASTEXITCODE=0
+NOTA: a unica entrada em git status e a propria pasta de evidencias criada para este arquivo; nenhum outro arquivo alterado.

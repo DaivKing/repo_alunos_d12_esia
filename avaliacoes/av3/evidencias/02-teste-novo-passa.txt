@@ -1,0 +1,49 @@
+== focado ==
+test_item_sem_estoque_nao_deixa_reserva (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_item_sem_estoque_nao_deixa_reserva) ... ok
+test_pedido_com_estoque_continua_reservando (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_pedido_com_estoque_continua_reservando) ... ok
+test_sku_repetido_falha_no_proprio_sku (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_falha_no_proprio_sku) ... ok
+test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+LASTEXITCODE=0
+== suite existente completa ==
+test_cadastro_sem_nome_e_rejeitado (testes_existentes.test_cadastro.TestCadastro.test_cadastro_sem_nome_e_rejeitado) ... ok
+test_cadastro_valido (testes_existentes.test_cadastro.TestCadastro.test_cadastro_valido) ... ok
+test_cenarios_gravados (testes_existentes.test_calculo.TestCalculo.test_cenarios_gravados) ... ok
+test_cupom_desconhecido_e_ignorado (testes_existentes.test_calculo.TestCalculo.test_cupom_desconhecido_e_ignorado) ... ok
+test_cupom_natal_com_flag (testes_existentes.test_calculo.TestCalculo.test_cupom_natal_com_flag) ... ok
+test_cupom_promo10_sp (testes_existentes.test_calculo.TestCalculo.test_cupom_promo10_sp) ... ok
+test_frete_gratis_rj (testes_existentes.test_calculo.TestCalculo.test_frete_gratis_rj) ... ok
+test_pedido_acima_de_200_nao_paga_frete (testes_existentes.test_calculo.TestCalculo.test_pedido_acima_de_200_nao_paga_frete) ... ok
+test_retorna_numero (testes_existentes.test_calculo.TestCalculo.test_retorna_numero) ... ok
+test_total_simples_pe (testes_existentes.test_calculo.TestCalculo.test_total_simples_pe) ... ok
+test_uf_desconhecida_usa_frete_e_taxa_padrao (testes_existentes.test_calculo.TestCalculo.test_uf_desconhecida_usa_frete_e_taxa_padrao) ... ok
+test_aplicar_desconto (testes_existentes.test_descontos.TestDescontos.test_aplicar_desconto) ... ok
+test_sem_cupom_retorna_total (testes_existentes.test_descontos.TestDescontos.test_sem_cupom_retorna_total) ... ok
+test_reservar_alem_do_saldo_levanta (testes_existentes.test_estoque.TestEstoque.test_reservar_alem_do_saldo_levanta) ... ok
+test_reservar_decrementa_saldo (testes_existentes.test_estoque.TestEstoque.test_reservar_decrementa_saldo) ... ok
+test_formatar_moeda_milhar (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_milhar) ... ok
+test_formatar_moeda_nao_quebra (testes_existentes.test_formatacao.TestFormatacao.test_formatar_moeda_nao_quebra) ... ok
+test_cenarios_golden (testes_existentes.test_golden_calculo.TestGoldenCalculo.test_cenarios_golden) ... ok
+test_criar_e_obter_pedido (testes_existentes.test_handlers.TestHandlers.test_criar_e_obter_pedido) ... ok
+test_estoque_insuficiente_retorna_409 (testes_existentes.test_handlers.TestHandlers.test_estoque_insuficiente_retorna_409) ... ok
+test_pedido_inexistente (testes_existentes.test_handlers.TestHandlers.test_pedido_inexistente) ... ok
+test_criar_pedido (testes_existentes.test_pedidos.TestPedidos.test_criar_pedido) ... ok
+test_fluxo_chama_colaboradores (testes_existentes.test_pedidos.TestPedidos.test_fluxo_chama_colaboradores) ... ok
+test_pagamento_recusado_nao_salva_pedido (testes_existentes.test_pedidos.TestPedidos.test_pagamento_recusado_nao_salva_pedido) ... ok
+test_pedido_sem_itens_e_rejeitado (testes_existentes.test_pedidos.TestPedidos.test_pedido_sem_itens_e_rejeitado) ... ok
+test_resumo_vendas (testes_existentes.test_relatorios.TestRelatorios.test_resumo_vendas) ... ok
+test_simular_desconto (testes_existentes.test_relatorios.TestRelatorios.test_simular_desconto) ... ok
+test_item_sem_estoque_nao_deixa_reserva (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_item_sem_estoque_nao_deixa_reserva) ... ok
+test_pedido_com_estoque_continua_reservando (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_pedido_com_estoque_continua_reservando) ... ok
+test_sku_repetido_falha_no_proprio_sku (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_falha_no_proprio_sku) ... ok
+test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.005s
+
+OK
+LASTEXITCODE=0

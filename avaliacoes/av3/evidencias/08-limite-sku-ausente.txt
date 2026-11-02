@@ -1,0 +1,19 @@
+EVIDENCIA 08 - limite: item sem sku depois de um item valido
+Fora de R2.2 (nao e falta de estoque); documenta o limite (4).
+
+Comando (PowerShell, dentro de caso/):
+  python -B -c "<trecho abaixo>"
+
+from miniloja.estoque import Estoque
+from miniloja.pagamentos import GatewayFake
+from miniloja.pedidos import PedidoService
+from miniloja.repositorio import RepositorioPedidos
+e = Estoque({'BOLA-01': 10}); s = PedidoService(RepositorioPedidos(), e, GatewayFake())
+try: s.criar(1, [{'sku':'BOLA-01','preco':10.0,'qtd':2}, {'preco':5.0,'qtd':1}])
+except Exception as x: print(type(x).__name__, x)
+print('saldo', e.saldo('BOLA-01'), e.reservas)
+
+Saida:
+KeyError 'sku'
+saldo 8 {('tmp-1', 'BOLA-01'): 2}
+LASTEXITCODE=0

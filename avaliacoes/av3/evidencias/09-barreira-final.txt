@@ -1,0 +1,42 @@
+EVIDENCIA 09 - barreira de escopo final (gerada depois do ultimo commit de conteudo; lista a si mesma)
+BASE=8bec5f7ca462d07dc07900d47be42b020186119f
+HEAD=e9e9fc69051fa1d03252d2b0f0a04d4d707c6c68 (o commit desta evidencia ainda nao existe)
+
+$ git diff --cached --name-only 8bec5f7
+avaliacoes/av3/evidencias/00-linha-de-base.txt
+avaliacoes/av3/evidencias/01-teste-novo-falha.txt
+avaliacoes/av3/evidencias/02-teste-novo-passa.txt
+avaliacoes/av3/evidencias/03-sabotagem.txt
+avaliacoes/av3/evidencias/04-verificacoes-oficiais.txt
+avaliacoes/av3/evidencias/05-suite-existente.txt
+avaliacoes/av3/evidencias/06-barreira-escopo.txt
+avaliacoes/av3/evidencias/07-sabotagem-armadilha.txt
+avaliacoes/av3/evidencias/08-limite-sku-ausente.txt
+avaliacoes/av3/evidencias/09-barreira-final.txt
+avaliacoes/av3/plano-b3.txt
+avaliacoes/av3/pr-b3.md
+avaliacoes/av3/template-registro.md
+caso/miniloja/estoque.py
+caso/miniloja/pedidos.py
+caso/testes_existentes/test_reserva_estoque.py
+
+CODIGO permitido: caso/miniloja/estoque.py, caso/miniloja/pedidos.py, caso/testes_existentes/test_reserva_estoque.py
+EVIDENCIAS: avaliacoes/av3/evidencias/0*.txt
+DOCUMENTACAO da entrega: avaliacoes/av3/template-registro.md, avaliacoes/av3/pr-b3.md, avaliacoes/av3/plano-b3.txt
+FORA DO ESCOPO (vazio esperado): (vazio)
+
+$ git diff --stat 8bec5f7 -- caso/
+ caso/miniloja/estoque.py                       | 10 ++++
+ caso/miniloja/pedidos.py                       | 13 ++++-
+ caso/testes_existentes/test_reserva_estoque.py | 78 ++++++++++++++++++++++++++
+ 3 files changed, 99 insertions(+), 2 deletions(-)
+
+$ python -B testes/test_miniloja.py --codigo caso   (esperado 8 ok / 3 falhas)
+Ran 11 tests in 0.011s
+FAILED (failures=3)
+LASTEXITCODE=1
+
+$ python -B testes/test_miniloja.py --codigo caso --existentes   (esperado 31 OK)
+Ran 31 tests in 0.005s
+OK
+LASTEXITCODE=0
