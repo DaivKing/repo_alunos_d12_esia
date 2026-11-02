@@ -1,31 +1,40 @@
 # Registro individual — AV3
 
-**Limite: três páginas + até duas de evidências.** Estudante: ___ — Data: ___ — Caminho: A (meu código) / B (MiniLoja: B1, B2 ou B3)
+**Limite: três páginas + até duas de evidências.** Estudante: Davi Albnes — Data: 02/11/2026 — Caminho: B (MiniLoja: B3)
 
-**Modo de interação usado e por quê (raio de impacto, oráculo, familiaridade):** ___ **Alternativa comparada:** ___
+**Modo de interação usado e por quê (raio de impacto, oráculo, familiaridade):** plano primeiro (modo plano, só leitura), revisado e corrigido por mim, depois execução commit a commit com critérios de parada. *Raio de impacto:* duas classes e mudança pequena, mas o defeito é de estado (saldo e reservas). *Oráculo:* R2.2 e o saldo, verificáveis por teste com `Estoque` real. *Familiaridade:* eu já conhecia o MiniLoja das AV1 e da AV2. **Alternativa comparada:** agente autônomo com edição livre. Seria mais rápido, mas o risco concreto aqui é desfazer via `self.reservas`, que passa na suíte existente (27 OK com o defeito presente, evidência 00, pois `test_pedidos.py` usa `MagicMock` no estoque) e erra com SKU repetido. A evidência 07 prova só que, entre os casos novos, apenas (b) pega essa armadilha.
 
-**Escopo declarado antes (seis campos):** ___ **Cumprido? Como verifiquei (comando ou barreira):** ___
+**Escopo declarado antes (seis campos; detalhe em `pr-b3.md` e `plano-b3.txt`):** (1) Objetivo: corrigir R2.2 com teste de regressão. (2) Pode tocar: `pedidos.py`, `estoque.py`, o teste novo, evidências. (3) Não pode tocar: `testes/`, `regras.md`, testes existentes, golden, demais módulos; sem dependências. (4) Invariantes: assinaturas, SKU na exceção, pedido bem-sucedido igual, saldo exato com SKU repetido, R2.3 fora. (5) Pronto: teste que falha e passa, sabotagem, verificações, barreira. (6) Parada: árvore suja, arquivo fora do escopo, resultado existente mudar, teste novo passar antes. **Desvio declarado:** o escopo enviado ao agente listava só código, teste e `.txt` de evidências, e proibia os templates da av3. Depois da execução, eu criei `pr-b3.md` e `plano-b3.txt` e preenchi este registro: são a entrega documental, não tocam código. **Cumprido? Como verifiquei:** sim, pela barreira `06` (código e evidências 00–05) e pela barreira final `09`, gerada depois do último commit de conteúdo, que separa código e documentação e lista a si mesma.
 
-**Verificação:** teste que falharia sem a mudança ___; prova (execução antes e depois, sabotagem ou mutação) ___
+**Verificação:** `caso/testes_existentes/test_reserva_estoque.py`, casos (a), (b), (b2), (c) (descritos no PR); (c) é guarda e passa antes e depois. Prova:
+- `01` antes: (a), (b), (b2) falham por asserção (saldo 8, 5 e 4 em vez de 10).
+- `02` depois: 4 OK; suíte 31 OK.
+- `03` sabotagem do desfazer (`pass` no laço): (a), (b), (b2) voltam a falhar; restaurado.
+- `07` sabotagem da armadilha (desfazer via `reservas`): só (b) falha (8 != 10); restaurado.
+- `04` verificações oficiais: 8 ok e 3 falhas (v08, v09, v10), igual à base.
+- `05` suíte existente: 31 OK (27 + 4).
+- `08` limite: item sem `sku` depois de um item válido levanta `KeyError` e deixa a reserva (saldo 8); fora de R2.2, documenta o limite (4).
 
 | O que a IA errou (o quê, onde) | Como detectei | O que corrigi e por quê (causa e impacto) |
 | --- | --- | --- |
-| ___ |  |  |
-| ___ |  |  |
-| ___ |  |  |
+| Plano, risco 3: afirmou que um item sem `qtd` daria `KeyError` no meio das reservas e recomendou `except Exception`. | Lendo `calculo.py:14`: `calcular_total` lê `i["qtd"]` de todos os itens antes do laço. | Captura só `EstoqueInsuficiente`. Causa: premissa não verificada (o `qtd` é lido antes do laço). A preocupação de fundo procede em outro caso: item sem `sku` levanta `KeyError` no meio do laço e deixa reserva (evidência `08`). Não é R2.2, pois não é falta de estoque; fica no limite (4). Impacto: `except Exception` ampliaria o escopo e criaria um comportamento sem teste. |
+| Plano, passo 6: sabotagem "comentar o `except`" pode gerar `SyntaxError`, e o teste falharia por ERROR, não por asserção. | Revisão do plano. | Trocar só o corpo do laço de liberação por `pass` (`03` mostra FAIL por asserção). Impacto: a prova de que o teste falharia ficaria inválida. |
+| Plano, seção 3: o caso (c) afirmava o dicionário exato de reservas (chaves `tmp-1`) sem distinguir contrato de comportamento atual. | Comparando com `regras.md`. | Comentário de caracterização no teste: o que vem do contrato é saldo, cobrança e repositório; as chaves `tmp-1` são comportamento atual. Impacto: evita tratar detalhe de implementação como regra. |
+| Resumo final da execução: disse "nada saiu diferente do previsto", mas foram 6 commits em vez dos 5 planejados (06 separado) e o `git status` da evidência 00 não estava limpo (a pasta de evidências já existia, criada pelo próprio arquivo 00; o agente deixou uma nota). | Conferindo `git log` e o 00 contra o resumo do agente em `plano-b3.txt` (l. 349: "A árvore está limpa"; l. 406: "Nada saiu diferente do previsto"). | Registrei as duas diferenças aqui. Impacto: baixo no código, mas o resumo do agente não pode ser usado como evidência sem conferência. |
+| Claude no chat (Opus 5.5): sugeriu a mensagem do commit `8bec5f7` com "(AV2)", mas o `golden_calculo.json` commitado tem 64 cenários e veio da AV1.2 (branch `tarefa/r2`), não da AV2 (2592 entradas). | Contando os cenários e os itens do golden da branch `av2` (`git show av2:caso/golden_calculo.json`, lista de 2592 itens). | Corrigido na documentação; o histórico não foi reescrito. Impacto: atribuição errada de origem do insumo. |
 
-**Dependências novas (se houver) e checagem:** ___
+**Dependências novas (se houver) e checagem:** nenhuma. Conferido em `git diff 8bec5f7..HEAD -- caso/`: só biblioteca padrão (`unittest`) e imports internos.
 
 | Medição do meu time | Meu desenho |
 | --- | --- |
-| Pergunta e decisão | ___ |
-| Métrica primária e guardrail | ___ |
-| Baseline, período e método | ___ |
-| Risco de manipulação e contramedida | ___ |
-| Tarefa recorrente a automatizar e verificação exigida | ___ |
+| Pergunta e decisão | Um agente para mudanças de regra reduziria a mediana do tempo até verificado sem aumentar os defeitos de regra escapados? Decisão: manter, ampliar ou retirar o agente. |
+| Métrica primária e guardrail | Primária: mediana do **tempo até verificado** (1º commit até merge com CI e guardrail verdes). Guardrail: casos derivados de `regras.md` passando, defeitos de regra escapados sem aumentar, escore de mutação nas linhas alteradas não abaixo do baseline do time. No B3, "verificado" exige o oráculo do contrato: os testes com `MagicMock` de `test_pedidos.py` ficavam verdes com o defeito presente. |
+| Baseline, período e método | Do time (a coletar): 4–8 semanas de PRs de regra antes da adoção, guardrail reaplicado; antes/depois, mediana e intervalo. A miniatura só calibra o método: 1ª versão em 13, 5 e 25 s contra verificado em 2, 1 e 1 min (AV1.1, branch `aula-1`); escore de mutação 23/31 = 74% (AV1.3, branch `tarefa/aula-3`). |
+| Risco de manipulação e contramedida | Testes tautológicos, fatiar PRs, tratar uso como valor. Contramedida: "verificado" exige o oráculo do contrato; escore de mutação nas linhas alteradas; um par audita uma amostra por semana. |
+| Tarefa recorrente a automatizar e verificação exigida | O agente propõe testes para matar os sobreviventes de mutação de PRs que tocam regra; o script gera o relatório e o escore. **Suposição:** ~5 PRs/semana, ~30 min de revisão por PR. Verificação: limpo OK / mutante FAILED / limpo OK; `git diff --stat` só com testes novos; o par confere o esperado contra `regras.md`. O agente só comenta. Desligar o agente se tocar fora do escopo uma vez ou se mais de 30% dos testes propostos forem rejeitados em 2 semanas (30% é suposição). |
 
-**Limites e condição para rever:** ___
+**Limites e condição para rever:** (1) R2.3 (pagamento recusado também deixa reserva) está fora do escopo. (2) A chave `tmp-{usuario_id}` e a sobrescrita em `estoque.py:19` podem perder a entrada de reserva de um pedido anterior do mesmo usuário e SKU; o saldo fica exato. (3) `reservar` não valida `qtd <= 0`. (4) Só `EstoqueInsuficiente` dispara o desfazer. (5) O golden cobre só `calcular_total` (64 cenários da AV1.2; o da AV2 tem 2592 itens), não o estoque. (6) Execução em Windows, Python 3.15 (conferida com `python --version` depois da execução; não capturada nas evidências 00–07). **Rever se** R2.3 entrar no contrato ou se `reservar` mudar de semântica.
 
-**Procedência/IA:** não utilizada / ferramenta e modelo visíveis: ___; tarefa delegada e contexto: ___; trecho aproveitado: ___; minha verificação/intervenção: ___. O raciocínio e a decisão registrados são meus.
+**Procedência/IA:** ferramentas e modelos visíveis: Claude Code, modelo Sonnet 5.5 (`claude-sonnet-5-5`): plano, teste, correção, evidências 00 a 07 e rascunho deste registro e do PR; Claude no chat, modelo Opus 5.5 (`claude-opus-5-5`): leitura do enunciado, escolha da tarefa, escopo, revisão do plano, conferência independente do diff e das evidências, e as sabotagens que originaram a 07. Trecho aproveitado: plano (após minhas correções), teste, `Estoque.liberar`, a correção em `criar` e as evidências. Minha verificação/intervenção: escolhi a B3 (descartei a B2 porque Decimal quebraria as verificações em testes/); revisei e enviei o escopo de seis campos antes de qualquer edição; quando o agente parou por árvore suja, fiz o commit do golden em separado; rejeitei o primeiro plano e decidi capturar só EstoqueInsuficiente, aceitar o limite da chave tmp-, deixar R2.3 fora e trocar a sabotagem; confrontei o resumo final do agente com o git log e as evidências, com apoio do Claude no chat, e pedi a evidência 07; li o diff de caso/miniloja e rodei o teste focado (4 OK); conferi nas evidências 01 e 07 os saldos que provam a falha antes da correção (8, 5 e 4 em vez de 10) e que só o caso (b) pega o desfazer errado (8 em vez de 10), com explicação do Claude no chat; conferi a versão do Python (3.15); revisei este registro e o PR antes de commitar. O raciocínio e a decisão registrados são meus.
 
 **Revisão:** [ ] modo; [ ] escopo; [ ] verificação; [ ] erros da IA; [ ] medição e automação; [ ] procedência.
