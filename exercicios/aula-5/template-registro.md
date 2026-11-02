@@ -1,24 +1,26 @@
 # Registro individual — AV1.5
 
-**Limite: uma página, incluindo evidências essenciais.** Estudante: ___ — Data: ___
-Origem: pull request fictício liberado no bloco; modalidade: execução própria / inspeção textual (marque).
+**Limite: uma página, incluindo evidências essenciais.** Estudante: Davi Albnes — Data: 02/11/2026
+Origem: pull request fictício liberado no bloco ("Adiciona exportação de vendas em CSV", `apoio/pr-bloco5/`); modalidade: **execução própria** (patch aplicado em branch descartável e testes rodados localmente).
 
 | # | Onde (arquivo) | Problema e impacto | Severidade (bloqueia / comenta) | Correção e teste que falharia sem ela |
 | --- | --- | --- | --- | --- |
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
+| 1 | `caso/miniloja/exportacao.py:14-15` | `exportar_vendas` recebe `usuario_id`, mas não o usa e exporta `_repo.todos()`. Qualquer usuário exporta os pedidos (id, usuario_id, total) de todos os outros: **viola a R4** e vaza dados. | **Bloqueia** | Filtrar por `p["usuario_id"] == usuario_id`. Teste `test_usuario_so_exporta_os_proprios`: pedidos dos usuários 1 e 2, `exportar_vendas(1, "v.csv")`, e o CSV não pode ter linha do usuário 2. Hoje sai `2,2,"R$ 20,00"` e o teste falha (`'2' unexpectedly found in {'1', '2'}`). |
+| 2 | `caso/miniloja/exportacao.py:17` | `os.path.join(EXPORT_DIR, nome_arquivo)` usa o nome de quem chama sem validação: `"../"` sai de `exports/` e caminho absoluto descarta `EXPORT_DIR`. **Path traversal**: quem chama escolhe onde o servidor grava e pode sobrescrever arquivos. | **Bloqueia** | Rejeitar com 400 nome com separador, `..` ou absoluto (só `basename`), ou gerar o nome no servidor. Testes `test_nome_com_traversal_rejeitado` e `test_caminho_absoluto_rejeitado` (esperam 400 e nenhum arquivo). Hoje `exportar_vendas(1, "../fora.csv")` retorna `200` e cria `fora.csv` fora de `exports/`. |
+| 3 | `caso/requirements.txt` | Adiciona `csv-export-helper==0.4.2`, que **não existe no PyPI** e **não é importado** (o código usa o `csv` da biblioteca padrão). Hoje o `pip install -r` quebra; se alguém registrar o nome, instala código de terceiro (**slopsquatting**). Contraria o `CLAUDE.md` ("somente biblioteca padrão"). | **Bloqueia** | Remover a linha. Verificação: `pip download csv-export-helper==0.4.2 --no-deps` retorna "from versions: none" (controle: `six` baixa); `grep` por `csv[_-]export[_-]helper` em `*.py` não acha nada. |
+| 4 | `caso/miniloja/exportacao.py:18-26` | `except Exception: pass` engole qualquer falha de escrita, sem log, e retorna `200` com `"linhas"` mesmo sem arquivo: quem chama acredita que exportou. | **Bloqueia** (não viola regra do contrato; seria *comenta* se a falha fosse logada e o retorno não afirmasse sucesso. Bloqueia porque responde `200` sem arquivo) | Remover o `except` genérico e retornar erro (ex.: 500) ou propagar a exceção. Teste `test_falha_de_escrita_nao_retorna_200`: hoje `exportar_vendas(1, "pasta_inexistente/x.csv")` retorna `200` com `{'linhas': 4}` e nenhum arquivo. |
 
 | Alegação da descrição do PR | Confirmada ou refutada? | Evidência (comando, trecho) |
 | --- | --- | --- |
-| ___ |  |  |
-| ___ |  |  |
+| "Todos os testes passam (27)" | Confirmada literalmente, mas insuficiente | `python -B testes/test_miniloja.py --codigo caso --existentes`: 26 OK antes, 27 depois. O teste novo usa mock no `_repo`, só confere status e `linhas`, não lê o CSV e grava `exports/vendas.csv` no disco. |
+| "Não há mudanças de comportamento no código existente" | Parcialmente confirmada | A suíte existente continua passando, e as 3 falhas pré-existentes (v08, v09, v10, tarefas do B1) seguem iguais. Mas o PR expõe função pública nova (`get_exportacao`) que grava em disco. |
+| "Código revisado e seguro" | Refutada | Os 4 testes de abuso dos achados 1, 2 e 4 falham, e a dependência do achado 3 não existe. |
+| "`csv-export-helper` para formatar o CSV" | Refutada | O pacote não existe e não é importado; quem formata é `csv` + `_br`. |
 
-**Dependência nova (nome, existe?, quem mantém?, necessária?):** ___
+**Dependência nova (nome, existe?, quem mantém?, necessária?):** `csv-export-helper==0.4.2`. Não existe no PyPI (`pip download` e `pip index versions`: "no matching distribution"; o controle `six` baixou, então não é rede). Sem mantenedor. Desnecessária: não é importada e o `csv` da biblioteca padrão resolve.
 
-**Decisão sobre o merge e condição para aprovar:** ___ **Limite da revisão:** ___
+**Decisão sobre o merge e condição para aprovar:** **Não aprovar (pedir mudanças).** Condição: corrigir os achados 1, 2, 3 e 4, cada um com o teste de abuso correspondente versionado e passando, e a suíte `--existentes` verde. Como quem aprova o merge responde pelo código, esta decisão se baseia nos testes que eu rodei, não no texto do PR. **Limite da revisão:** não rodei SAST (Semgrep/CodeQL), SCA (`pip-audit`) nem secret scanning, e os testes de abuso cobriram só 4 cenários (não testei, por exemplo, injeção de fórmula no CSV nem arquivos grandes). A falha de acesso pré-existente em `get_pedido` fica fora do escopo deste PR.
 
-**Procedência/IA:** não utilizada / ferramenta e modelo visíveis: ___; tarefa delegada e contexto: ___; trecho aproveitado: ___; minha verificação/intervenção: ___. Use "não informado" para metadados indisponíveis. O raciocínio e a decisão registrados são meus.
+**Procedência/IA:** ferramenta e modelo visíveis: Claude Code v2.1.316, Sonnet 5.5 (plano Claude Team), e app Claude (modelo não informado) para planejar o roteiro. Tarefa delegada e contexto: aplicar o patch em branch descartável, rodar a suíte antes e depois, checar a dependência, apontar linhas do diff e escrever testes de abuso temporários para cenários que eu defini; contexto: `exercicios/aula-5/README.md` e o PR. Trecho aproveitado: os 4 testes de abuso (apagados depois) e as saídas dos comandos. Minha verificação/intervenção: listei as alegações e como provar cada uma antes de rodar; aprovei cada comando no modo manual, sem alterar `caso/regras.md`, `testes/` e `apoio/` nem corrigir o PR; revisei cada saída e conferi os achados contra a R4 e o `CLAUDE.md`; decidi severidades e merge; reverti o patch (`git status` limpo). O raciocínio e a decisão registrados são meus.
 
-**Revisão:** [ ] quatro achados; [ ] alegações conferidas; [ ] dependência checada; [ ] decisão; [ ] até uma página.
+**Revisão:** [x] quatro achados; [x] alegações conferidas; [x] dependência checada; [x] decisão; [ ] até uma página.
