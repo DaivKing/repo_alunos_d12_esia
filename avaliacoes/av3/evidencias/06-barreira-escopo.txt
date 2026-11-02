@@ -1,0 +1,13 @@
+BASE=8bec5f7ca462d07dc07900d47be42b020186119f
+== git diff --name-only BASE..HEAD (este arquivo 06 ainda nao commitado, tambem permitido) ==
+avaliacoes/av3/evidencias/00-linha-de-base.txt
+avaliacoes/av3/evidencias/01-teste-novo-falha.txt
+avaliacoes/av3/evidencias/02-teste-novo-passa.txt
+avaliacoes/av3/evidencias/03-sabotagem.txt
+avaliacoes/av3/evidencias/04-verificacoes-oficiais.txt
+avaliacoes/av3/evidencias/05-suite-existente.txt
+caso/miniloja/estoque.py
+caso/miniloja/pedidos.py
+caso/testes_existentes/test_reserva_estoque.py
+== arquivos fora do escopo (vazio esperado) ==
+(fim)
