@@ -1,0 +1,979 @@
+{
+  "_origem": "Golden master de calcular_total: saidas geradas pelo codigo atual (nao pelo contrato). Comparacao por igualdade exata. 'nota' marca divergencia com caso/regras.md.",
+  "cenarios": [
+    {
+      "id": "simples_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 50.0,
+            "qtd": 2
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 118.55
+    },
+    {
+      "id": "simples_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 50.0,
+            "qtd": 2
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 128.29
+    },
+    {
+      "id": "simples_RJ",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 50.0,
+            "qtd": 2
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 128.79
+    },
+    {
+      "id": "simples_XX",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 50.0,
+            "qtd": 2
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 140.29
+    },
+    {
+      "id": "cupom_None_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 106.89
+    },
+    {
+      "id": "cupom_PROMO10_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 98.33
+    },
+    {
+      "id": "cupom_VIP15_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "VIP15",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 94.05
+    },
+    {
+      "id": "cupom_FRETEGRATIS_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 85.6
+    },
+    {
+      "id": "cupom_CUPOMFALSO_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "CUPOMFALSO",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 106.89
+    },
+    {
+      "id": "cupom_promo10_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "promo10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 106.89
+    },
+    {
+      "id": "cupom__SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 106.89
+    },
+    {
+      "id": "natal_flag_ligada_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 100.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "NATAL",
+        "natal_ativa": true,
+        "uf": "PE"
+      },
+      "saida": 97.55
+    },
+    {
+      "id": "natal_flag_desligada_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 100.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "NATAL",
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 118.55
+    },
+    {
+      "id": "natal_flag_ligada_acima_200",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 300.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "NATAL",
+        "natal_ativa": true,
+        "uf": "RJ"
+      },
+      "saida": 254.4
+    },
+    {
+      "id": "frete_gratis_cupom_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 40.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 42.0
+    },
+    {
+      "id": "frete_gratis_cupom_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 40.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 42.8
+    },
+    {
+      "id": "frete_gratis_cupom_RJ",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 40.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 42.4
+    },
+    {
+      "id": "frete_gratis_cupom_XX",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 40.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 43.2
+    },
+    {
+      "id": "subtotal_199_99",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 199.99,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 223.53
+    },
+    {
+      "id": "subtotal_exato_200",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 100.0,
+            "qtd": 2
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 223.55,
+      "nota": "diverge de regras.md (R1): contrato daria 210.0; gravado o valor atual"
+    },
+    {
+      "id": "subtotal_200_01",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 200.01,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 210.01
+    },
+    {
+      "id": "subtotal_250",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 250.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 262.5
+    },
+    {
+      "id": "desconto_leva_a_198_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 220.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 221.44,
+      "nota": "diverge de regras.md (R1): contrato daria 221.45; gravado o valor atual"
+    },
+    {
+      "id": "desconto_leva_a_exato_200_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 222.22222222222223,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 235.29,
+      "nota": "diverge de regras.md (R1): contrato daria 214.0; gravado o valor atual"
+    },
+    {
+      "id": "desconto_exato_200_VIP15",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 1000.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "VIP15",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 901.0
+    },
+    {
+      "id": "vip_300_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 100.0,
+            "qtd": 3
+          }
+        ],
+        "cupom": "VIP15",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 272.85
+    },
+    {
+      "id": "centavos_19_99_x3",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 19.99,
+            "qtd": 3
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 76.51
+    },
+    {
+      "id": "vazio_PE",
+      "entrada": {
+        "itens": [],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.54,
+      "nota": "diverge de regras.md (R1): contrato daria 13.55; gravado o valor atual"
+    },
+    {
+      "id": "vazio_FRETEGRATIS",
+      "entrada": {
+        "itens": [],
+        "cupom": "FRETEGRATIS",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 0.0
+    },
+    {
+      "id": "uf_omitida",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 30.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false
+      },
+      "saida": 45.05
+    },
+    {
+      "id": "uf_minuscula",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 30.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "pe"
+      },
+      "saida": 64.69
+    },
+    {
+      "id": "qtd_zero",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 30.0,
+            "qtd": 0
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.54,
+      "nota": "diverge de regras.md (R1): contrato daria 13.55; gravado o valor atual"
+    },
+    {
+      "id": "carrinho_C1_camisa_e_bola_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          },
+          {
+            "preco": 50.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 150.05
+    },
+    {
+      "id": "carrinho_C1_camisa_e_bola_RJ",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          },
+          {
+            "preco": 50.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 160.59
+    },
+    {
+      "id": "carrinho_C2_chuteira_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 250.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 262.5
+    },
+    {
+      "id": "carrinho_C2_chuteira_RJ",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 250.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 265.0
+    },
+    {
+      "id": "carrinho_C3_varias_bolas_PE",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 19.99,
+            "qtd": 3
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 76.51
+    },
+    {
+      "id": "carrinho_C3_varias_bolas_RJ",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 19.99,
+            "qtd": 3
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 86.36
+    },
+    {
+      "id": "carrinho_C1_PROMO10_SP",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 80.0,
+            "qtd": 1
+          },
+          {
+            "preco": 50.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 146.48
+    },
+    {
+      "id": "arred_preco_0.01",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.01,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.56
+    },
+    {
+      "id": "arred_preco_0.05",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.05,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.6
+    },
+    {
+      "id": "arred_preco_0.1",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.1,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.65
+    },
+    {
+      "id": "arred_preco_0.15",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.15,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.7
+    },
+    {
+      "id": "arred_preco_0.25",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.25,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.81
+    },
+    {
+      "id": "arred_preco_0.35",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 0.35,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 13.91
+    },
+    {
+      "id": "arred_preco_1.005",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 1.005,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 14.6
+    },
+    {
+      "id": "arred_preco_2.675",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 2.675,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 16.35
+    },
+    {
+      "id": "arred_preco_10.1",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 10.1,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 24.15
+    },
+    {
+      "id": "arred_preco_33.33",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 33.33,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 48.54
+    },
+    {
+      "id": "arred_preco_7.77",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 7.77,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 21.7
+    },
+    {
+      "id": "arred_preco_12.345",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 12.345,
+            "qtd": 1
+          }
+        ],
+        "cupom": null,
+        "natal_ativa": false,
+        "uf": "PE"
+      },
+      "saida": 26.51
+    },
+    {
+      "id": "arred_15.0_SP_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 15.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 35.74
+    },
+    {
+      "id": "arred_15.0_RJ_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 15.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 37.1
+    },
+    {
+      "id": "arred_15.0_XX_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 15.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 46.87
+    },
+    {
+      "id": "arred_33.0_SP_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 33.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 53.07
+    },
+    {
+      "id": "arred_33.0_RJ_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 33.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 54.27
+    },
+    {
+      "id": "arred_33.0_XX_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 33.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 64.37
+    },
+    {
+      "id": "arred_45.5_SP_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 45.5,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 65.11
+    },
+    {
+      "id": "arred_45.5_RJ_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 45.5,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 66.2
+    },
+    {
+      "id": "arred_45.5_XX_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 45.5,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 76.52
+    },
+    {
+      "id": "arred_61.0_SP_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 61.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "SP"
+      },
+      "saida": 80.04
+    },
+    {
+      "id": "arred_61.0_RJ_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 61.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 80.98
+    },
+    {
+      "id": "arred_61.0_XX_PROMO10",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 61.0,
+            "qtd": 1
+          }
+        ],
+        "cupom": "PROMO10",
+        "natal_ativa": false,
+        "uf": "XX"
+      },
+      "saida": 91.58
+    },
+    {
+      "id": "varios_itens_mistos",
+      "entrada": {
+        "itens": [
+          {
+            "preco": 9.9,
+            "qtd": 3
+          },
+          {
+            "preco": 24.5,
+            "qtd": 2
+          },
+          {
+            "preco": 0.99,
+            "qtd": 7
+          }
+        ],
+        "cupom": "VIP15",
+        "natal_ativa": false,
+        "uf": "RJ"
+      },
+      "saida": 99.94
+    }
+  ]
+}
