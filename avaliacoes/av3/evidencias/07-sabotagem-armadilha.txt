@@ -1,0 +1,40 @@
+== sabotagem: desfazer baseado em self.estoque.reservas em vez de reversed(feitas) ==
+diff --git a/caso/miniloja/pedidos.py b/caso/miniloja/pedidos.py
+index 1d3fc63..ec263b6 100644
+--- a/caso/miniloja/pedidos.py
++++ b/caso/miniloja/pedidos.py
+@@ -27,8 +27,9 @@ class PedidoService:
+                 feitas.append((i["sku"], i["qtd"]))
+         except EstoqueInsuficiente:
+             # R2.2: nenhuma reserva desta chamada pode permanecer.
+-            for sku, qtd in reversed(feitas):
+-                self.estoque.liberar(sku, qtd, pedido_tmp)
++            for (pid, sku), qtd in list(self.estoque.reservas.items()):
++                if pid == pedido_tmp:
++                    self.estoque.liberar(sku, qtd, pedido_tmp)
+             raise
+         cobranca = self.gateway.cobrar(total, token)
+         if cobranca["status"] != "aprovado":
+== focado: test_reserva_estoque.py ==
+test_item_sem_estoque_nao_deixa_reserva (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_item_sem_estoque_nao_deixa_reserva) ... ok
+test_pedido_com_estoque_continua_reservando (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_pedido_com_estoque_continua_reservando) ... ok
+test_sku_repetido_falha_no_proprio_sku (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_falha_no_proprio_sku) ... ok
+test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato) ... FAIL
+
+======================================================================
+FAIL: test_sku_repetido_restaura_saldo_exato (testes_existentes.test_reserva_estoque.TestReservaEstoque.test_sku_repetido_restaura_saldo_exato)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Davi\Documents\GitHub\repo_alunos_d12_esia\caso\testes_existentes\test_reserva_estoque.py", line 48, in test_sku_repetido_restaura_saldo_exato
+    self.assertEqual(self.estoque.saldo("BOLA-01"), 10)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 8 != 10
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (failures=1)
+LASTEXITCODE=1
+== apos restaurar (git checkout -- caso/miniloja/pedidos.py): git diff --stat (vazio esperado) ==
+
+(fim do diff --stat)
